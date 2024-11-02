@@ -1,11 +1,9 @@
-#!/bin/bash
+echo Hello
 
 # Capture input arguments
-S3_BUCKET="$1"
-S3_DIR="$2"
-TAR_FILE="$3"
-
-echo "Hello from inside copy_and_install.sh"
+# S3_BUCKET="$1"
+# S3_DIR="$2"
+# TAR_FILE="$3"
 
 # # Ensure temp directory exists
 # TEMP_DIR="../../../temp"
