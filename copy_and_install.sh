@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Capture input arguments
-S3_BUCKET="$1"
-S3_DIR="$2"
+S3_DIR="$1"
+S3_BUCKET="$2"
 TAR_FILE="$3"
 
 # Ensure temp directory exists
@@ -11,7 +11,7 @@ mkdir -p $TEMP_DIR
 
 # Copy the node_modules tar file from S3 to temp directory
 echo "Copying $TAR_FILE from S3..."
-sudo su -c "cp ${S3_BUCKET}/${S3_DIR}/${TAR_FILE} ${TEMP_DIR}/" ec2-user
+sudo su -c "cp ${S3_DIR}/${S3_BUCKET}/${TAR_FILE} ${TEMP_DIR}/" ec2-user
 
 # Move the tar file to the working directory
 echo "Moving $TAR_FILE to the working directory..."
