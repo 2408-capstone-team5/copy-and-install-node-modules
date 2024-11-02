@@ -19,8 +19,7 @@ runs:
       env:
         GITHUB_ACTION_PATH: ${{ github.action_path }}
     - name: Run copy and install script
-      run: copy_and_install.sh
-      # run: copy_and_install.sh ${{ inputs.s3_bucket }} ${{ inputs.s3_dir }} ${{ inputs.targz_file }}
+      run: copy_and_install.sh ${{ inputs.s3_bucket }} ${{ inputs.s3_dir }} ${{ inputs.targz_file }}
       shell: bash
   # steps:
   #   - name: Copy node_modules tar file from S3
