@@ -13,10 +13,14 @@ runs:
     - name: Copy node_modules tar file from S3
       run: |
         sudo su -c "cp ${{ inputs.s3_bucket }}/$${{ inputs.s3_dir }}/node_modules.tar.gz ../../../temp/" ec2-user
+      shell: bash
     - name: Copy node_modules tar file to working directory
       run: cp ../../../temp/node_modules.tar.gz ./
+      shell: bash
     - name: Unzip node_modules tar file
       run: tar -xvzf node_modules.tar.gz
+      shell: bash
     - name: Install dependencies
       if: ${{ hashFiles('package.json') != '' }}
       run: npm install
+      shell: bash
