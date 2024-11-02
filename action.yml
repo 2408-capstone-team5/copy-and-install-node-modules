@@ -7,7 +7,9 @@ inputs:
   s3_dir:
     description: 'S3 directory path where tar file is stored'
     required: true
-runs:
+  targz_file:
+    description: 'The name of the tar.gz file to copy from S3'
+    required: true
   using: "composite"
   steps:
     - name: Copy node_modules tar file from S3
