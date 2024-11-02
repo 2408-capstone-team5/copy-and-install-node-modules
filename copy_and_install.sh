@@ -29,4 +29,4 @@ npm install
 #   npm install
 # else
 #   echo "No changes in package.json; skipping npm install."
-fi
+# fi
