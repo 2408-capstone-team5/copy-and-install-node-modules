@@ -21,10 +21,12 @@ cp "${TEMP_DIR}/${TAR_FILE}" ./
 echo "Unzipping $TAR_FILE..."
 tar -xvzf "$TAR_FILE"
 
-# Install dependencies if package.json has changed
-if [[ $(git diff --name-only HEAD~1 HEAD | grep 'package.json') ]]; then
-  echo "Installing dependencies..."
-  npm install
-else
-  echo "No changes in package.json; skipping npm install."
+npm install
+
+# # Install dependencies if package.json has changed
+# if [[ $(git diff --name-only HEAD~1 HEAD | grep 'package.json') ]]; then
+#   echo "Installing dependencies..."
+#   npm install
+# else
+#   echo "No changes in package.json; skipping npm install."
 fi
