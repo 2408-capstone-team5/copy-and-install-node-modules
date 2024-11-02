@@ -13,6 +13,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
     - name: Run copy and install script
       run: copy_and_install.sh ${{ inputs.s3_bucket }} ${{ inputs.s3_dir }} ${{ inputs.targz_file }}
       shell: bash
