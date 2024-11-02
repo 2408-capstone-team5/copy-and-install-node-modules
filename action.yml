@@ -10,19 +10,24 @@ inputs:
   targz_file:
     description: 'The name of the tar.gz file to copy from S3'
     required: true
+runs:
   using: "composite"
   steps:
-    - name: Copy node_modules tar file from S3
-      run: |
-        sudo su -c "cp ${{ inputs.s3_dir }}/${{ inputs.s3_bucket }}/${{ inputs.targz_file }} ../../../temp/" ec2-user
+    - name: Execute copy and install script
+      run: ./scripts/copy_and_install.sh ${{ inputs.s3_bucket }} ${{ inputs.s3_dir }} ${{ inputs.targz_file }}
       shell: bash
-    - name: Copy node_modules tar file to working directory
-      run: cp ../../../temp/${{ inputs.targz_file }} ./
-      shell: bash
-    - name: Unzip node_modules tar file
-      run: tar -xvzf ${{ inputs.targz_file }}
-      shell: bash
-    - name: Install dependencies
-      if: ${{ hashFiles('package.json') != '' }}
-      run: npm install
-      shell: bash
+  # steps:
+  #   - name: Copy node_modules tar file from S3
+  #     run: |
+  #       sudo su -c "cp ${{ inputs.s3_dir }}/${{ inputs.s3_bucket }}/${{ inputs.targz_file }} ../../../temp/" ec2-user
+  #     shell: bash
+  #   - name: Copy node_modules tar file to working directory
+  #     run: cp ../../../temp/${{ inputs.targz_file }} ./
+  #     shell: bash
+  #   - name: Unzip node_modules tar file
+  #     run: tar -xvzf ${{ inputs.targz_file }}
+  #     shell: bash
+  #   - name: Install dependencies
+  #     if: ${{ hashFiles('package.json') != '' }}
+  #     run: npm install
+  #     shell: bash
