@@ -12,7 +12,7 @@ runs:
   steps:
     - name: Copy node_modules tar file from S3
       run: |
-        sudo su -c "cp ${{ inputs.s3_bucket }}/$${{ inputs.s3_dir }}/node_modules.tar.gz ../../../temp/" ec2-user
+        sudo su -c "cp ${{ inputs.s3_path }}/${{ inputs.s3_bucket }}/dir-node_modules.tar.gz ../../../temp/" ec2-user
       shell: bash
     - name: Copy node_modules tar file to working directory
       run: cp ../../../temp/node_modules.tar.gz ./
